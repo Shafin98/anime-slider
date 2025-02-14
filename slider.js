@@ -8,8 +8,8 @@ let thumbnailItemsDom = thumbnailBorderDom.querySelectorAll('.item');
 let timeDom = document.querySelector('.carousel .time');
 
 thumbnailBorderDom.appendChild(thumbnailItemsDom[0]);
-let timeRunning = 30000;
-let timeAutoNext = 70000;
+let timeRunning = 5000;
+let timeAutoNext = 7000;
 
 nextDom.onclick = function(){
     showSlider('next');
@@ -40,13 +40,16 @@ function showSlider(type){
 
     clearTimeout(runTimeOut);
     runTimeOut = setTimeout(() =>{
-        carouselDOm.classList.remove('next');
-        carouselDOm.classList.remove('prev');
+        carouselDom.classList.remove('next');
+        carouselDom.classList.remove('prev');
+        document.querySelectorAll('.arrows button').forEach(btn => {
+            btn.style.pointerEvents = "auto";
+        });
     }, timeRunning);
 
     clearTimeout(runNextAuto);
     runNextAuto = setTimeout(() => {
-        next.click();
+        nextDom.click();
     }, timeAutoNext)
 
 }
